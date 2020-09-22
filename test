@@ -1,16 +1,16 @@
-const path = require('path')
 const {CleanWebpackPlugin} = require('clean-webpack-plugin')
-const HTMLWebpackPlugin = require('html-webpack-plugin')
 const CopyPlugin = require('copy-webpack-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const path = require('path')
 
 const isProd = process.env.NODE_ENV === 'production'
 const isDev = !isProd
 
-const filename = ext => isDev ? `bundle.${ext}` : `bundle.[hash].${ext}`
+const filename = ext => isDev ? `bundle.${ext}` : `bundle.[chunkhash].${ext}`
 
 const jsLoaders = () => {
-  const loaders = [
+  const loader = [
     {
       loader: 'babel-loader',
       options: {
@@ -20,16 +20,20 @@ const jsLoaders = () => {
   ]
 
   if (isDev) {
-    loaders.push('eslint-loader')
+    loader.push('eslint-loader')
   }
 
-  return loaders
+  return loader
 }
 
 module.exports = {
   context: path.resolve(__dirname, 'src'),
   mode: 'development',
   entry: ['@babel/polyfill', './index.js'],
+  devServer: {
+    port: 3000,
+    hot: isDev
+  },
   output: {
     filename: filename('js'),
     path: path.resolve(__dirname, 'dist')
@@ -42,33 +46,32 @@ module.exports = {
     }
   },
   devtool: isDev ? 'source-map' : false,
-  devServer: {
-    port: 3000,
-    hot: isDev
-  },
   plugins: [
-    new CleanWebpackPlugin(),
-    new HTMLWebpackPlugin({
+    new MiniCssExtractPlugin({
+      filename: filename('css')
+    }),
+    new HtmlWebpackPlugin({
       template: 'index.html',
       minify: {
         removeComments: isProd,
         collapseWhitespace: isProd
       }
     }),
+    new CleanWebpackPlugin(),
     new CopyPlugin({
       patterns: [{
         from: path.resolve(__dirname, 'src/favicon.ico'),
         to: path.resolve(__dirname, 'dist')
       }]
-    }),
-    new MiniCssExtractPlugin({
-      filename: filename('css')
     })
   ],
   module: {
     rules: [
       {
-        test: /\.s[ac]ss$/i,
+        test: /\.s[ac]ss%/i,
+        include: [
+          path.resolve(__dirname, 'src/scss')
+        ],
         use: [
           {
             loader: MiniCssExtractPlugin.loader,
@@ -78,14 +81,13 @@ module.exports = {
             }
           },
           'css-loader',
-          'sass-loader'
-        ],
+          'sass-loader'],
       },
       {
         test: /\.js$/,
         exclude: /node_modules/,
         use: jsLoaders()
       }
-    ]
-  }
+    ],
+  },
 }
