@@ -1,4 +1,3 @@
-import './module'
-import './style.css'
+import './scss/index.scss'
 
-console.log('All be alright')
+console.log('Working!')
