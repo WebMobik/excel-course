@@ -13,6 +13,7 @@ function toColumn(content) {
   return `
         <div class="column">
             ${content}
+            <div class="col-resize"></div>
         </div>
     `
 }
@@ -22,6 +23,7 @@ function createRow(index, cols) {
         <div class="row">
             <div class="row-info">${index ? index : ''}</div>
             <div class="row-data">${cols}</div>
+            <div class="row-resize"></div>
         </div>
     `
 }

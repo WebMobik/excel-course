@@ -59,8 +59,38 @@
 
     &.selected {
       border: none;
-      outline: 2px solid #3c74ff;
+      outline: 2px solid $primary-color;
       z-index: 2;
+    }
+  }
+
+  .row-resize, .col-resize {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    opacity: 0;
+    background-color: $primary-color;
+
+    :hover {
+      opacity: 1;
+    }
+  }
+
+  .col-resize {
+    right: 0;
+    width: 4px;
+
+    :hover {
+      cursor: col-resize;
+    }
+  }
+
+  .row-resize {
+    left: 0;
+    height: 4px;
+
+    :hover {
+      cursor: row-resize;
     }
   }
 
