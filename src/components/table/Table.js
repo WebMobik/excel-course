@@ -7,15 +7,15 @@ export class Table extends ExcelComponent {
   constructor($root) {
     super($root, {
       name: 'Table',
-      listeners: ['input']
+      listeners: ['input', 'mousedown']
     })
-  }
-
-  onInput(event) {
-    console.log(event.target.textContent.trim())
   }
 
   toHTML() {
     return createTable(20)
+  }
+
+  onMousedown() {
+    console.log('MouseDown event')
   }
 }
