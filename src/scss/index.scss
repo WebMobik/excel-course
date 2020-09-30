@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+@import url("https://fonts.googleapis.com/css?family=Roboto&display=swap");
 @import "~normalize.css";
 
 @import "header";
@@ -14,16 +14,14 @@
 }
 
 body {
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   font-size: 12px;
 }
 
 .excel {
-  position: relative;
+  // position: relative;
   color: #888;
   height: 100%;
   max-width: 100%;
-  font-size: .8rem;
+  font-size: 0.8rem;
 }
-
-
