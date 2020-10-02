@@ -10,5 +10,3 @@ const excel = new Excel('#app', {components: [
 ]});
 
 excel.render()
-
-console.log('Excel', excel)
