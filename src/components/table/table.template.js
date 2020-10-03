@@ -28,6 +28,7 @@ function createRow(index, cols) {
         <div class="row" data-type="resizable" data-cell="${index}">
             ${rowInfo.trim()}
             <div class="row-data">${cols}</div>
+            <div class="row-resize"></div>
         </div>
     `
 }
