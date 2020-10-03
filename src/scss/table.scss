@@ -17,6 +17,7 @@
   }
 
   .row-info {
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -32,6 +33,7 @@
   }
 
   .column {
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -64,23 +66,25 @@
     }
   }
 
-  .row-resize, .col-resize {
+  .row-resize,
+  .col-resize {
     position: absolute;
-    top: 0;
+    right: 0;
     bottom: 0;
     opacity: 0;
+    z-index: 1000;
     background-color: $primary-color;
 
-    :hover {
-      opacity: 1;
+    &:hover {
+      opacity: 1 !important;
     }
   }
 
   .col-resize {
-    right: 0;
+    top: 0;
     width: 4px;
 
-    :hover {
+    &:hover {
       cursor: col-resize;
     }
   }
@@ -89,7 +93,7 @@
     left: 0;
     height: 4px;
 
-    :hover {
+    &:hover {
       cursor: row-resize;
     }
   }
