@@ -4,7 +4,6 @@ export class Header extends ExcelComponent {
   constructor($root, options) {
     super($root, {
       name: 'Header',
-      listeners: ['click'],
       ...options
     })
   }
@@ -26,9 +25,5 @@ export class Header extends ExcelComponent {
       </div>
 
     </div>`
-  }
-
-  onClick(event) {
-    console.log(event.target)
   }
 }
