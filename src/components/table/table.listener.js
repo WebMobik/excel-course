@@ -31,20 +31,16 @@ export function onMouseEvent($root, event) {
 
     if (typeResize === 'col') {
       $parent.css({width: value + 'px'})
-      console.log($parent.data)
       $root
-          .findAll(`[data-cell="${$parent.data.cell}"]`)
+          .findAll(`[data-col="${$parent.data.col}"]`)
           .forEach(el => el.style.width = value + 'px')
-      $resizer.css({
-        opacity: 0,
-        right: 0
-      })
     } else if (typeResize === 'row') {
       $parent.css({height: value + 'px'})
-      $resizer.css({
-        opacity: 0,
-        bottom: 0,
-      })
     }
+    $resizer.css({
+      opacity: 0,
+      right: 0,
+      bottom: 0
+    })
   }
 }
