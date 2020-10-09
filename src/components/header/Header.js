@@ -1,12 +1,13 @@
 import {ExcelComponent} from '@core/ExcelComponent';
 
 export class Header extends ExcelComponent {
-  // constructor($root) {
-  //   super($root, {
-  //     name: 'Header',
-  //     listeners: ['click']
-  //   })
-  // }
+  constructor($root, options) {
+    super($root, {
+      name: 'Header',
+      listeners: ['click'],
+      ...options
+    })
+  }
 
   static className = 'excel__header'
 
@@ -25,5 +26,9 @@ export class Header extends ExcelComponent {
       </div>
 
     </div>`
+  }
+
+  onClick(event) {
+    console.log(event.target)
   }
 }

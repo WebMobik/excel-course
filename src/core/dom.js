@@ -12,6 +12,10 @@ class Dom {
     return this.$el.outerHTML.trim()
   }
 
+  text(text) {
+    this.$el.textContent = text
+  }
+
   clear() {
     this.html('')
     return this
@@ -49,8 +53,36 @@ class Dom {
     return this.$el.getBoundingClientRect()
   }
 
+  focus() {
+    this.$el.focus()
+    return this
+  }
+
+  id(parse) {
+    if (parse) {
+      const parse = this.id().split(':')
+      return {
+        row: +parse[0],
+        col: +parse[1]
+      }
+    }
+    return this.data.id
+  }
+
   findAll(selector) {
     return this.$el.querySelectorAll(selector)
+  }
+
+  find(selector) {
+    return $(this.$el.querySelector(selector))
+  }
+
+  addClass(className) {
+    this.$el.classList.add(className)
+  }
+
+  removeClass(className) {
+    this.$el.classList.remove(className)
   }
 
   css(styles = {}) {
