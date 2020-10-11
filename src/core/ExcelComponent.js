@@ -3,6 +3,7 @@ import {DOMListener} from '@core/DOMListener';
 export class ExcelComponent extends DOMListener {
   constructor($root, options = {}) {
     super($root, options.listeners)
+
     this.name = options.name || ''
     this.emitter = options.emitter
     this.store = options.store
@@ -31,6 +32,10 @@ export class ExcelComponent extends DOMListener {
 
   $subscribe(fn) {
     this.storeSub = this.store.subscribe(fn)
+  }
+
+  $getState() {
+    this.store.getState()
   }
 
   toHTML() {

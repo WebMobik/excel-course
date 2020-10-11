@@ -44,10 +44,10 @@ function toChar(_, index) {
   return String.fromCharCode(CODES.A + index)
 }
 
-export function createTable(rowsCount = 15) {
+export function createTable(rowsCount = 15, state) {
   const colsCount = CODES.Z - CODES.A + 1
   const rows = []
-
+  console.log(state)
   const cols = new Array(colsCount)
       .fill('')
       .map(toChar)
