@@ -7,6 +7,9 @@ export function rootReducer(state, action) {
       prevState = state.colState || {}
       prevState[action.data.id] = action.data.value
       return {...state, colState: prevState}
-    default: return state
+    default: {
+      state.colState = state.colState || {}
+      return state
+    }
   }
 }

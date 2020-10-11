@@ -41,7 +41,8 @@ export function onMouseEvent($root, event) {
 
       resolve({
         value,
-        id: typeResize === 'col' ? $parent.data.col : null
+        type: typeResize,
+        id: $parent.data[typeResize]
       })
 
       $resizer.css({

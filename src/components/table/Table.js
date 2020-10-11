@@ -30,7 +30,6 @@ export class Table extends ExcelComponent {
     super.init()
 
     this.selectCell(this.$root.find('[data-id="0:0"]'))
-    // this.startTable(this.store.getState())
 
     this.$on('formula:input', text => {
       this.selection.current.text(text)
@@ -39,14 +38,6 @@ export class Table extends ExcelComponent {
       this.selection.current.focus()
     })
   }
-
-  // startTable(data) {
-  //   const colState = data.colState
-  //   Object.keys(colState).forEach(key => {
-  //     const getCols = this.$root.findAll(`[data-col="${key}"]`)
-  //     getCols.forEach(el => $(el).css({width: colState[key] + 'px'}))
-  //   })
-  // }
 
   selectCell($cell) {
     this.selection.select($cell)
