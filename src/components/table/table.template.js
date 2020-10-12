@@ -8,16 +8,19 @@ const DEFAULT_HEIGHT = 25
 
 function toCell(state, row) {
   return function(_, col) {
+    const id = `${row}:${col}`
+    const width = getWidth(state.colState, col)
+    const data = state.dataState[id]
     return `
       <div class="cell" 
         contenteditable="" 
-        data-id="${row}:${col}"
+        data-id="${id}"
         data-type="cell"
         data-col="${col}"
         style="
-          width: ${getWidth(state.colState, col)} 
+          width: ${width} 
         "
-      ></div> 
+      >${data || ''}</div> 
     `
   }
 }
