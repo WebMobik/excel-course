@@ -13,6 +13,7 @@ export class Table extends ExcelComponent {
     super($root, options = {
       name: 'Table',
       listeners: ['mousedown', 'keydown', 'input'],
+      subscribe: ['dataState'],
       ...options
     })
     this.$root = $root
