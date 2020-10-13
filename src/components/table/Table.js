@@ -5,6 +5,7 @@ import {onMouseEvent} from './table.listener';
 import {shouldResize, isCell, matrix, nextSelector} from './table.functions';
 import {TableSelect} from './TableSelect';
 import * as actions from '@/redux/actions'
+import {defaultStyles} from '@/constants'
 
 export class Table extends ExcelComponent {
   static className = 'excel__table'
@@ -39,10 +40,15 @@ export class Table extends ExcelComponent {
     this.$on('formula:blur', () => {
       this.selection.current.focus()
     })
+    this.$on('toolbar:styles', style => {
+      this.selection.applyStyle(style)
+    })
   }
 
   selectCell($cell) {
     this.selection.select($cell)
+    const styles = $cell.getStyles(Object.keys(defaultStyles))
+    this.$dispatch(actions.currentStyle(styles))
     this.$emit('table:select', $cell)
   }
 

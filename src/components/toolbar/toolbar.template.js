@@ -18,19 +18,17 @@ export function createToolbar(state) {
     {
       icon: 'format_align_left',
       active: state['textAlign'] === 'left',
-      value: {textAlign: state['textAlign'] === 'left' ?
-      'right' || 'center' :
-      'left'},
+      value: {textAlign: 'left'}
     },
     {
       icon: 'format_align_center',
       active: state['textAlign'] === 'center',
-      value: {textAlign: state['textAlign'] === 'center' ? 'left' : 'center'},
+      value: {textAlign: 'center'},
     },
     {
       icon: 'format_align_right',
       active: state['textAlign'] === 'right',
-      value: {textAlign: state['textAlign'] === 'right' ? 'left' : 'right'},
+      value: {textAlign: 'right'},
     },
     {
       icon: 'format_bold',

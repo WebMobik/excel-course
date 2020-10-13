@@ -24,4 +24,8 @@ export class TableSelect {
     this.group = $elArr
     this.group.forEach(el => el.addClass(TableSelect.className))
   }
+
+  applyStyle(style) {
+    this.group.forEach($el => $el.css(style))
+  }
 }
