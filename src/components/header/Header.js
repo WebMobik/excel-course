@@ -1,29 +1,29 @@
 import {ExcelComponent} from '@core/ExcelComponent';
+import {createHeader} from './header.template';
+import * as actions from '@/redux/actions'
+import {$} from '@core/dom'
 
 export class Header extends ExcelComponent {
+  static className = 'excel__header'
+
   constructor($root, options) {
     super($root, {
       name: 'Header',
+      listeners: ['input'],
       ...options
     })
   }
 
-  static className = 'excel__header'
-
   toHTML() {
-    return `
-    <input type="text" class="input" value="Новая таблица" />
+    return createHeader(this.store.getState())
+  }
 
-    <div>
+  updateTextHeaderInStore(value) {
+    this.$dispatch(actions.currentTitle(value))
+  }
 
-      <div class="button">
-        <i class="material-icons">delete</i>
-      </div>
-
-      <div class="button">
-        <i class="material-icons">exit_to_app</i>
-      </div>
-
-    </div>`
+  onInput(event) {
+    const $target = $(event.target)
+    this.updateTextHeaderInStore($target.text())
   }
 }

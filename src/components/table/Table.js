@@ -40,9 +40,6 @@ export class Table extends ExcelComponent {
     this.$on('formula:blur', () => {
       this.selection.current.focus()
     })
-    // this.$on('toolbar:styles', style => {
-    //   this.selection.applyStyle(style)
-    // })
     this.$on('toolbar:applyStyle', value => {
       this.selection.applyStyle(value)
       this.$dispatch(actions.applyStyle({

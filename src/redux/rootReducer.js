@@ -1,4 +1,10 @@
-import {TABLE_RESIZE, CHANGE_TEXT, CURRENT_STYLE, APPLY_STYLE} from './types'
+import {
+  TABLE_RESIZE,
+  CHANGE_TEXT,
+  CURRENT_STYLE,
+  APPLY_STYLE,
+  CURRENT_TITLE
+} from './types';
 
 export function rootReducer(state, action) {
   let field
@@ -21,7 +27,6 @@ export function rootReducer(state, action) {
     case APPLY_STYLE:
       field = 'stylesState'
       val = state[field] || {}
-      console.log(val)
       action.data.ids.forEach(id => {
         val[id] = {...val[id], ...action.data.value}
       })
@@ -29,6 +34,11 @@ export function rootReducer(state, action) {
         ...state,
         [field]: val,
         currentStyle: {...state.currentStyle, ...action.data.value}
+      }
+    case CURRENT_TITLE:
+      return {
+        ...state,
+        title: action.data
       }
     default: return state
   }
