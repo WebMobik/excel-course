@@ -5,15 +5,18 @@ import {Table} from '@/components/table/Table';
 import {Toolbar} from '@/components/toolbar/Toolbar';
 import {rootReducer} from '@/redux/rootReducer';
 import {createStore} from '@core/createStore';
-import {storage} from '@core/utils';
+import {debounce, storage} from '@core/utils';
 import {initialState} from './redux/initialState';
 import './scss/index.scss';
 
 const store = createStore(rootReducer, initialState)
 
-store.subscribe(store => {
+const stateListener = debounce(store => {
+  console.log('StateApp:', store)
   storage('excel-state', store)
-})
+}, 300)
+
+store.subscribe(stateListener)
 
 const excel = new Excel('#app', {components: [
   Header, Toolbar, Formula, Table

@@ -1,5 +1,4 @@
 export function createHeader(state) {
-  console.log(state)
   return `
         <input type="text" class="input" value="${state.title}" />
 
