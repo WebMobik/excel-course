@@ -1,4 +1,5 @@
 import {toInlineStyles} from '@core/utils'
+import {parse} from '@core/parse'
 
 const CODES = {
   A: 65,
@@ -13,6 +14,7 @@ function toCell(state, row) {
     const id = `${row}:${col}`
     const width = getWidth(state.colState, col)
     const data = state.dataState[id]
+    const rezult = parse(data)
     const styles = toInlineStyles(state.stylesState[id])
     return `
       <div class="cell" 
@@ -20,10 +22,11 @@ function toCell(state, row) {
         data-id="${id}"
         data-type="cell"
         data-col="${col}"
+        data-value="${data || ''}"
         style="${styles};
           width: ${width} 
         "
-      >${data || ''}</div> 
+      >${rezult || ''}</div> 
     `
   }
 }

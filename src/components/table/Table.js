@@ -1,5 +1,6 @@
 import {ExcelComponent} from '@core/ExcelComponent';
 import {$} from '@core/dom';
+import {parse} from '@core/parse';
 import {createTable} from './table.template';
 import {onMouseEvent} from './table.listener';
 import {shouldResize, isCell, matrix, nextSelector} from './table.functions';
@@ -33,9 +34,11 @@ export class Table extends ExcelComponent {
 
     this.selectCell(this.$root.find('[data-id="0:0"]'))
 
-    this.$on('formula:input', text => {
-      this.selection.current.text(text)
-      this.updateTextInStore(text)
+    this.$on('formula:input', value => {
+      this.selection.current
+          .attr('data-value', value)
+          .text(parse(value))
+      this.updateTextInStore(value)
     })
     this.$on('formula:blur', () => {
       this.selection.current.focus()

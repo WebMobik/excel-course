@@ -12,7 +12,7 @@ import './scss/index.scss';
 const store = createStore(rootReducer, initialState)
 
 const stateListener = debounce(store => {
-  console.log('StateApp:', store)
+  // console.log('StateApp:', store)
   storage('excel-state', store)
 }, 300)
 
