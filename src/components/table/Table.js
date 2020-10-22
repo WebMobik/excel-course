@@ -37,6 +37,7 @@ export class Table extends ExcelComponent {
     this.$on('formula:input', value => {
       this.selection.current
           .attr('data-value', value)
+      this.selection.current
           .text(parse(value))
       this.updateTextInStore(value)
     })
@@ -92,13 +93,16 @@ export class Table extends ExcelComponent {
       'Enter',
       'Tab'
     ]
-
     const {key} = event
     if (keys.includes(key) && !event.shiftKey) {
       event.preventDefault()
       const id = this.selection.current.id(true)
-      const $next = this.$root.find(nextSelector(key, id))
+      const $next = this.$root.find(nextSelector(key, id, event))
       this.selectCell($next)
+      if (key == 'Enter') {
+        const $target = $(event.target)
+        $target.text(parse($target.text()))
+      }
     }
   }
 
@@ -110,6 +114,8 @@ export class Table extends ExcelComponent {
   }
 
   onInput(event) {
-    this.updateTextInStore($(event.target).text())
+    const $targetText = $(event.target).text()
+    this.selection.current.attr('data-value', $targetText)
+    this.updateTextInStore($targetText)
   }
 }

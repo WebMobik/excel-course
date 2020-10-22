@@ -21,7 +21,7 @@ export function matrix($target, $current) {
   }, [])
 }
 
-export function nextSelector(key, {row, col}) {
+export function nextSelector(key, {row, col}, event) {
   const MIN_VALUE = 0
   switch (key) {
     case 'Enter':
