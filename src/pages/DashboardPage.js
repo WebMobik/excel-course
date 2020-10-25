@@ -11,7 +11,7 @@ export class DashboardPage extends Page {
     
         <div class="db__new">
             <div class="db__view">
-            <a href="#" class="db__create">
+            <a href="#excel/${Date.now()}" class="db__create">
                 Новая <br /> Таблица
             </a>
             </div>
@@ -19,7 +19,7 @@ export class DashboardPage extends Page {
     
         <div class="db__table db__view">
     
-            ${createRecordsTable()}
+            ${createRecordsTable(this.params)}
     
         </div>
     `)

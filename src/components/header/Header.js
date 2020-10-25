@@ -3,6 +3,7 @@ import {createHeader} from './header.template';
 import * as actions from '@/redux/actions'
 import {$} from '@core/dom'
 import {debounce} from '@core/utils'
+import {ActiveRoute} from '@core/routes/ActiveRoute'
 
 export class Header extends ExcelComponent {
   static className = 'excel__header'
@@ -10,7 +11,7 @@ export class Header extends ExcelComponent {
   constructor($root, options) {
     super($root, {
       name: 'Header',
-      listeners: ['input'],
+      listeners: ['input', 'click'],
       ...options
     })
   }
@@ -30,5 +31,20 @@ export class Header extends ExcelComponent {
   onInput(event) {
     const $target = $(event.target)
     this.updateTextHeaderInStore($target.text())
+  }
+
+  onClick(event) {
+    const $target = $(event.target)
+    if ($target.data.type == 'exit') {
+      ActiveRoute.navigate('')
+    }
+    if ($target.data.type == 'delete') {
+      const key = ActiveRoute.param
+      const description = confirm('Вы действительно хотите удалить таблицу ?')
+      if (description) {
+        localStorage.removeItem('excel:' + key)
+        ActiveRoute.navigate('')
+      }
+    }
   }
 }

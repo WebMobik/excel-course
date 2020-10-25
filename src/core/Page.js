@@ -1,6 +1,6 @@
 export class Page {
-  constructor(params) {
-    this.params = params
+  constructor(param) {
+    this.params = param
   }
 
   getRoot() {

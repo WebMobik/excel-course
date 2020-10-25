@@ -6,4 +6,8 @@ export class ActiveRoute {
   static get param() {
     return ActiveRoute.path.split('/')[1]
   }
+
+  static navigate(link) {
+    return window.location.hash = link
+  }
 }
