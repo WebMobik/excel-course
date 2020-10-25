@@ -1,11 +1,12 @@
 {
-  "name": "Excel-course",
+  "name": "excel-course",
   "version": "1.0.0",
   "description": "Run excel-course on JS",
   "main": "index.js",
   "scripts": {
     "build": "cross-env NODE_ENV=production webpack --mode production",
-    "start": "cross-env NODE_ENV=development webpack-dev-server --open"
+    "start": "cross-env NODE_ENV=development webpack-dev-server --open",
+    "lint": "npx eslint ./src"
   },
   "repository": "https://github.com/WebMobik/excel-course",
   "author": "WebMobik <ddimon3000@bk.ru>",
