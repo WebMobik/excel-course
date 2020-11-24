@@ -2,22 +2,22 @@
 
 Created an application for the course excel-course.
 
-##Table app view
+## Table app view
 
 Adding text to the table and changing styles.
-![table](https://yadi.sk/i/uHSRl5XFqdqahg "excel-table")
+![table](https://yadi.sk/i/uHSRl5XFqdqahg)
 
 Adding a mathematical formula.
-![formula](https://yadi.sk/i/JF4ySUy05dQjbQ "table-formula")
+![formula](https://yadi.sk/i/JF4ySUy05dQjbQ)
 
-##Dashboard page
+## Dashboard page
 
 View saved tables in the application.
-![dashboard](https://yadi.sk/i/Pr0NmBo2UQKZGw "dashboard")
+![dashboard](https://yadi.sk/i/Pr0NmBo2UQKZGw)
 
-##Installation
-
+## Installation
 $ yarn
 Running the app
-##development
+
+## development
 $ yarn start
